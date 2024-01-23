@@ -42,28 +42,28 @@ class Popsicle(ModelBase):
     price: float = sa.Column(sa.DECIMAL(8,2), nullable=False)
     # Relationships
     flavour_id: int = sa.Column(sa.Integer, sa.ForeignKey("flavours.id"))
-    flavour: Flavour = orm.relationship("Flavour", lazy="joined")
+    flavour: orm.Mapped[Flavour] = orm.relationship("Flavour", lazy="joined")
     package_type_id: int = sa.Column(sa.Integer, sa.ForeignKey("package_types.id"))
-    package_type: PackageType = orm.relationship("Flavour", lazy="joined")
+    package_type: orm.Mapped[PackageType] = orm.relationship("Flavour", lazy="joined")
     popsicle_type_id: int = sa.Column(sa.Integer, sa.ForeignKey("popsicle_types.id"))
-    popsicle_type: PopsicleType  = orm.relationship("PopsicleType", lazy="joined")
+    popsicle_type: orm.Mapped[PopsicleType]  = orm.relationship("PopsicleType", lazy="joined")
 
     # SQLAlchemy ORM One to Many or Many to Many Relationship
-    ingredients: List[Ingredient] = orm.relationship(
+    ingredients: orm.Mapped[List[Ingredient]] = orm.relationship(
         "Ingredient", 
         secondary=ingredients_popsicle, 
         backref="ingredient", 
         lazy="dynamic"
     )
 
-    preservatives: Optional[List[Preservative]] = orm.relationship(
+    preservatives: orm.Mapped[Optional[List[Preservative]]] = orm.relationship(
         "Preservative", 
         secondary=preservatives_popsicle, 
         backref="preservative", 
         lazy="dynamic"
     )
 
-    nutritive_additives: Optional[List[NutritiveAdditive]] = orm.relationship(
+    nutritive_additives: orm.Mapped[Optional[List[NutritiveAdditive]]] = orm.relationship(
         "NutritiveAdditive", 
         secondary=nutritive_additives_popsicle, 
         backref="nutritive_additive", 

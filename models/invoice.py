@@ -26,10 +26,10 @@ class Invoice(ModelBase):
     description: str = sa.Column(sa.String(200), nullable=False)
     # Relationships
     retailer_id: int = sa.Column(sa.Integer, sa.ForeignKey("retailers.id"))
-    retailer: Retailer = orm.relationship("Retailer", lazy="joined") # SQLAlchemy ORM Config
+    retailer: orm.Mapped[Retailer] = orm.relationship("Retailer", lazy="joined") # SQLAlchemy ORM Config
 
     # SQLAlchemy ORM Many to Many Relationship
-    batches: List[Batch] = orm.relationship(
+    batches: orm.Mapped[List[Batch]] = orm.relationship(
         "Batch", 
         secondary=batch_invoice, 
         backref="batch", 

@@ -14,7 +14,7 @@ class Batch(ModelBase):
     quantity: int = sa.Column(sa.Integer, nullable=False)
     # Relationships
     popsicle_type_id: int = sa.Column(sa.Integer, sa.ForeignKey("popsicle_types.id"))
-    popsicle_type: PopsicleType = orm.relationship("PopsicleType", lazy="joined") # SQLAlchemy ORM config
+    popsicle_type: orm.Mapped[PopsicleType] = orm.relationship("PopsicleType", lazy="joined") # SQLAlchemy ORM config
 
     def __repr__(self) -> int:
         return f"<Batches: {self.id}>"
