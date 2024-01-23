@@ -1,2 +1,2 @@
 # orm-sqlalchemy-sqlmodel
-Practice project using SQLAlchemy, SQL Model and Python
+A Data Model project using SQLAlchemy ORM, SQL Model and Python
