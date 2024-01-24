@@ -37,7 +37,7 @@ nutritive_additives_popsicle = sa.Table(
 class Popsicle(ModelBase):
     __tablename__: str = "popsicles"
 
-    id: int = sa.Column(sa.BigInteger, primary_key=True, autoincrement=True)
+    id: int = sa.Column(sa.BigInteger().with_variant(sa.Integer, "sqlite"), primary_key=True, autoincrement=True)
     created_date: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)
     price: float = sa.Column(sa.DECIMAL(8,2), nullable=False)
     # Relationships

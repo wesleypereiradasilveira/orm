@@ -9,7 +9,7 @@ from models.popsicle_type import PopsicleType
 class Batch(ModelBase):
     __tablename__: str = "batches"
 
-    id: int = sa.Column(sa.BigInteger, primary_key=True, autoincrement=True)
+    id: int = sa.Column(sa.BigInteger().with_variant(sa.Integer, "sqlite"), primary_key=True, autoincrement=True)
     created_date: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)
     quantity: int = sa.Column(sa.Integer, nullable=False)
     # Relationships
